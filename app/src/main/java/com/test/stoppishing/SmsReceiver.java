@@ -108,14 +108,16 @@ public class SmsReceiver extends BroadcastReceiver {
         String phoneNumber = new String();
 
 
-
-
         return phoneNumber;
     }
 
     public void sendJSONObj(Context context, JSONObject JsonObj){
         RequestQueue requestQueue;
-        String url = "http://SERVERURL?verify=";
+        String SERVER_URL = "http://52.78.244.4";
+        String PORT = "8080";
+
+        String url = SERVER_URL + ":" + PORT + "/verify?msg=";
+        Log.i(logTag, "url = " + url + JsonObj.toString());
         requestQueue = Volley.newRequestQueue(context.getApplicationContext());
 
         StringRequest stringReq = new StringRequest(Request.Method.GET,
@@ -132,7 +134,12 @@ public class SmsReceiver extends BroadcastReceiver {
                         Log.e(logTag, "VolleyError : " + error);
                     }
                 });
+        //Send message to server
+        requestQueue.add(stringReq);
     }
+
+
+
 
 //onResponse Listener
 /*
