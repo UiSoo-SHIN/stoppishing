@@ -1,4 +1,4 @@
-package com.test.stoppishing.ui.slideshow;
+package com.test.stoppishing.ui.setphonenumber;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.test.stoppishing.R;
-import com.test.stoppishing.databinding.FragmentSlideshowBinding;
+import com.test.stoppishing.databinding.FragmentSetPhoneNumberBinding;
 
-public class SlideshowFragment extends Fragment {
+public class SetNumberFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
-    private FragmentSlideshowBinding binding;
+    private SetNumberViewModel setNumberViewModel;
+    private FragmentSetPhoneNumberBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        setNumberViewModel =
+                new ViewModelProvider(this).get(SetNumberViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentSetPhoneNumberBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSetPhoneNumber;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        setNumberViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

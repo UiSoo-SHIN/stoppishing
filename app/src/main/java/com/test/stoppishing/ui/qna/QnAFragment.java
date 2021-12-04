@@ -1,9 +1,11 @@
-package com.test.stoppishing.ui.gallery;
+package com.test.stoppishing.ui.qna;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,28 +14,29 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.test.stoppishing.databinding.FragmentQnABinding;
+import com.test.stoppishing.databinding.FragmentQnaBinding;
 
 public class QnAFragment extends Fragment {
 
     private QnAViewModel qnAViewModel;
-    private FragmentQnABinding binding;
+    private FragmentQnaBinding binding;
+    private String qna_board_url = "https://www.naver.com";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         qnAViewModel =
                 new ViewModelProvider(this).get(QnAViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentQnaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        qnAViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        final WebView noticeBoard = binding.noticeBoard;
+        noticeBoard.loadUrl(qna_board_url);
+
+        //현재 앱을 나가서 새로운 브라우저를 열지 않도록함.
+        noticeBoard.setWebViewClient(new WebViewClient());
+
         return root;
     }
 

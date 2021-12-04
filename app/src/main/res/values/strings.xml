@@ -3,12 +3,13 @@
     <string name="title_activity_main2">MainActivity2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Stop Pishing</string>
+    <string name="nav_header_subtitle">피싱 방지 서비스\n\n\n대전 대덕경찰서\n사이버범죄수사팀</string>
+
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_notice">공지사항</string>
+    <string name="menu_qna">피싱에 당했어요</string>
+    <string name="menu_set_phone_number">전화번호 설정</string>
 </resources>
