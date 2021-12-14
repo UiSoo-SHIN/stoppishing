@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.setphonenumber.SetNumberFragment">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phone_number_list" />
 
+        <ImageView
+            android:id="@+id/registerNumber"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/phone_number_list"
+            android:src="@drawable/plus" />
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
