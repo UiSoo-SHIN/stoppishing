@@ -1,6 +1,10 @@
 package com.test.stoppishing;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
@@ -15,6 +19,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.test.stoppishing.databinding.ActivityMainBinding;
+import com.test.stoppishing.eventBus.EventBus;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +56,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.e("TEST", "onActivityResult is called");
+        Log.e("TEST", "requestCode = " + requestCode);
+        Log.e("TEST", "resultCode = " + resultCode);
+
+        if (resultCode == RESULT_OK) {
+            Cursor cursor = null;
+
+            if (data != null) {
+                cursor = getContentResolver().query(data.getData(),
+                        new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                                ContactsContract.CommonDataKinds.Phone.NUMBER}, null, null, null);
+            }
+
+            if (cursor != null) {
+                cursor.moveToFirst();
+                Log.e("TEST", "name : " + cursor.getString(0));
+                Log.e("TEST", "number : " + cursor.getString(1));
+                cursor.close();
+            }
+        }
+        String str = "test data";
+        EventBus.getInstance().post(str);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_activity2, menu);
@@ -62,4 +95,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }
